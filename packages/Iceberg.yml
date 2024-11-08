@@ -1,0 +1,22 @@
+config:
+  entities:
+    nodeTypes:
+      "305":
+        defaultStorageLocation: null
+        isDisabled: false
+      "307":
+        defaultStorageLocation: null
+        isDisabled: false
+      "320":
+        defaultStorageLocation: null
+        isDisabled: false
+      "321":
+        defaultStorageLocation: null
+        isDisabled: false
+  packageVariables: ""
+fileVersion: 1
+id: "@coalesce/iceberg-tables"
+name: Iceberg
+packageID: "@coalesce/iceberg-tables"
+releaseID: bdb778c0-b535-4fe8-86ae-933c32752e87
+type: Package
