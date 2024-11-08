@@ -1,4 +1,4 @@
-defaultStorageMapping: null
+defaultStorageMapping: STAGING
 fileVersion: 1
 locations:
   - DATAMART
