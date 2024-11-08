@@ -1,0 +1,7 @@
+defaultStorageMapping: null
+fileVersion: 1
+locations:
+  - DATAMART
+  - EDW
+  - EXTERNAL
+  - STAGING
