@@ -2,16 +2,16 @@ config:
   entities:
     nodeTypes:
       "305":
-        defaultStorageLocation: null
+        defaultStorageLocation: EXTERNAL
         isDisabled: false
       "307":
-        defaultStorageLocation: null
+        defaultStorageLocation: EXTERNAL
         isDisabled: false
       "320":
-        defaultStorageLocation: null
+        defaultStorageLocation: EXTERNAL
         isDisabled: false
       "321":
-        defaultStorageLocation: null
+        defaultStorageLocation: EXTERNAL
         isDisabled: false
   packageVariables: ""
 fileVersion: 1
