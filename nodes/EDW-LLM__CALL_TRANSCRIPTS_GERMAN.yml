@@ -1,0 +1,156 @@
+fileVersion: 1
+id: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+name: LLM__CALL_TRANSCRIPTS_GERMAN
+operation:
+  config:
+    exby:
+      items:
+        - {}
+    extractfunction: false
+    insertStrategy: INSERT
+    pby:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    sby:
+      items:
+        - {}
+    sentimentfunction: false
+    summarizefunction: false
+    tby:
+      items:
+        - lanorder: "'de', 'en'"
+          tpartColName:
+            columnCounter: 57e74212-8cef-4042-a527-21cfd83d7b5f
+            stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+    testsEnabled: true
+    translatefunction: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: EDW
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cef612c-bd00-4d8e-90c8-f4993b793ecb
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: DATE
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 594fafad-0e45-4406-8a9c-9c616754835c
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f77c7f5-d10f-433c-9694-ec34a8a6c08d
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 902194c8-c71b-4aa0-a9d7-dc1de284c030
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad1fbc20-14c3-49cd-adf8-d27791afdefb
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 61e28003-b6de-4434-ab14-31e78c68a85c
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a917886-cb24-4233-b45b-488a1d80d886
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3b636983-6572-405f-9904-643ae3b29048
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad5e155b-895e-49eb-9b5c-22d33737f0c1
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5b7c5fd-6458-4421-8d2f-5217941700f4
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d73f9aa-8205-4bc5-9edf-81318b92cecd
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c81d7c86-09a0-4792-8b01-a27c883b2e04
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57e74212-8cef-4042-a527-21cfd83d7b5f
+          stepCounter: 0a1f548f-ac80-4b88-ad9d-c6c25cfe6c9b
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TRANSCRIPT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a06835ca-c9b6-4c7b-8eb4-310ac8a936dd
+                stepCounter: 8da6befc-e3de-488f-b813-8a788bb72292
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGING
+            nodeName: STG_CALL_TRANSCRIPTS_GERMAN
+        join:
+          joinCondition: FROM {{ ref('STAGING', 'STG_CALL_TRANSCRIPTS_GERMAN') }} "STG_CALL_TRANSCRIPTS_GERMAN"
+        name: LLM__CALL_TRANSCRIPTS_GERMAN
+        noLinkRefs: []
+  name: LLM__CALL_TRANSCRIPTS_GERMAN
+  overrideSQL: false
+  schema: ""
+  sqlType: CortexML:::271
+  type: sql
+  version: 1
+type: Node
