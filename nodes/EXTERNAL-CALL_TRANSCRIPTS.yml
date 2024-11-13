@@ -1,0 +1,153 @@
+fileVersion: 1
+id: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+name: CALL_TRANSCRIPTS
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: EXTERNAL
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e31d3fa-2088-4da5-8d5f-30bc58a0b2ec
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e9f2f6e-7e82-4137-be92-ac40db4ff503
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dbe011df-6ffb-4002-9f2a-2ee1e7ddb914
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: COUNTRY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 582c6534-a18e-432d-b42f-548479eb248a
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: PRODUCT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a66e4334-6799-4608-8206-196c710eff1e
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CATEGORY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3276c8f-8886-45bd-a34c-6cd7ab164e43
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 717ae21c-147e-46b8-abb5-f5caa2b5a353
+          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: TRANSCRIPT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('EXTERNAL', 'CALL_TRANSCRIPTS') }}
+  name: CALL_TRANSCRIPTS
+  schema: ""
+  sqlType: Source
+  table: CALL_TRANSCRIPTS
+  type: sourceInput
+  version: 1
+type: Node
