@@ -2,24 +2,24 @@ config:
   entities:
     nodeTypes:
       "261":
-        defaultStorageLocation: null
+        defaultStorageLocation: EDW
         isDisabled: false
       "262":
-        defaultStorageLocation: null
+        defaultStorageLocation: EDW
         isDisabled: false
       "271":
-        defaultStorageLocation: null
+        defaultStorageLocation: EDW
         isDisabled: false
       "279":
-        defaultStorageLocation: null
+        defaultStorageLocation: EDW
         isDisabled: false
       "337":
-        defaultStorageLocation: null
+        defaultStorageLocation: EDW
         isDisabled: false
   packageVariables: ""
 fileVersion: 1
 id: "@coalesce/cortex"
 name: CortexML
 packageID: "@coalesce/cortex"
-releaseID: 9625d1b9-ca61-4918-8bee-76c04a16fb4f
+releaseID: 76e63883-6689-4867-8f55-3bba671e650e
 type: Package
