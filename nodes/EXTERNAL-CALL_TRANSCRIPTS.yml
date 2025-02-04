@@ -1,21 +1,39 @@
 fileVersion: 1
-id: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+id: d392f1ad-0f0e-4772-851f-d3a820e3478b
 name: CALL_TRANSCRIPTS
 operation:
+  config:
+    catdb: my_cat_table
+    catint: iceberg_catalog_integration
+    cattable: my_cat_table
+    extvolume: iceberg_external_volume
+    metafilepath: customer_transcripts/metadata/00001-6f7aba51-fd49-4d11-b659-17ddfd5e0686.metadata.json
+    predTask: DATA_TRANSFORMATION_ROOT_TASK
+    rootTask: DATA_TRANSFORMATION_ROOT_TASK
+    scheduleCRON: 5 0-23 * * * America/Los_Angeles
+    schedulePeriod: "60"
+    schedulePeriodOption: Predecessor
+    schedulingMode: Warehouse Task
+    schrefresh: false
+    serverlessSize: MEDIUM
+    tcatalog: Object storage
+    whName: <WAREHOUSE_NAME>
   database: ""
-  dataset: ""
   deployEnabled: true
   description: ""
+  isMultisource: false
   locationName: EXTERNAL
+  materializationType: task
   metadata:
+    appliedNodeTests: []
     columns:
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5e31d3fa-2088-4da5-8d5f-30bc58a0b2ec
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: 90799969-14f8-45f5-9969-4ff9215a1c68
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: DATE
         defaultValue: ""
@@ -33,8 +51,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7e9f2f6e-7e82-4137-be92-ac40db4ff503
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: b7bda897-8c19-4f6b-966a-ec6c2b99d80e
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -52,8 +70,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dbe011df-6ffb-4002-9f2a-2ee1e7ddb914
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: 3c9a4b3a-22b4-4175-be0b-8fbcbc90b0bf
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -71,8 +89,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 582c6534-a18e-432d-b42f-548479eb248a
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: 26292697-1f94-4712-908c-cea69af74d1d
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -90,8 +108,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a66e4334-6799-4608-8206-196c710eff1e
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: cfda7eab-8754-4ef8-8edb-db6d108eb8f1
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -109,8 +127,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f3276c8f-8886-45bd-a34c-6cd7ab164e43
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: 9bc3a700-9683-4f38-a104-86b6fcfb3fa7
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -128,8 +146,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 717ae21c-147e-46b8-abb5-f5caa2b5a353
-          stepCounter: c03ed1a3-633a-4df3-a31c-29c71e03cf18
+          columnCounter: 9cc7a060-b7d1-4c3a-9bac-627f40c1b692
+          stepCounter: d392f1ad-0f0e-4772-851f-d3a820e3478b
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -142,12 +160,21 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('EXTERNAL', 'CALL_TRANSCRIPTS') }}
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: CALL_TRANSCRIPTS
+        noLinkRefs: []
   name: CALL_TRANSCRIPTS
+  overrideSQL: false
   schema: ""
-  sqlType: Source
-  table: CALL_TRANSCRIPTS
-  type: sourceInput
+  sqlType: Iceberg:::307
+  type: sql
   version: 1
 type: Node
