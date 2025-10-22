@@ -1,0 +1,148 @@
+fileVersion: 1
+id: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+name: STG_CALL_TRANSCRIPTS_FRENCH
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGING
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec6b8609-31e3-4026-b90d-ca2a6f32aa10
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"CATEGORY\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 26af68a8-ed0b-411b-87af-1a19dce05e71
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"COUNTRY\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9810df68-1c43-409c-acc3-c5900c229a56
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"DAMAGE_TYPE\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a67a45ec-eeb1-4110-8a9b-00412beb319b
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"DATE_CREATED\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7449cec8-209a-41f8-9347-b65227d94883
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"LANGUAGE\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 75e1bda1-9fb0-4d25-9e12-87a250541f0c
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"PRODUCT\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03909d5f-cf23-41da-9f1a-91e03adda20e
+          stepCounter: fd3f4810-8104-4466-8e8f-8795f14ab0b0
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TRANSCRIPT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"SRC\".value:\"TRANSCRIPT\"::STRING"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CALL_TRANSCRIPTS: c6e307ad-268c-4ae8-a7af-8e6035922cfe
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGING
+            nodeName: CALL_TRANSCRIPTS
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGING', 'CALL_TRANSCRIPTS') }} "CALL_TRANSCRIPTS", 
+            lateral flatten(input => parse_json("SRC"), OUTER => TRUE) "SRC"
+            WHERE "LANGUAGE" IN ('French', 'English')
+        name: STG_CALL_TRANSCRIPTS_FRENCH
+        noLinkRefs: []
+  name: STG_CALL_TRANSCRIPTS_FRENCH
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

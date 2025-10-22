@@ -1,0 +1,173 @@
+fileVersion: 1
+id: 09b616d1-270e-46b2-8512-f3b9dc744035
+name: ICT_CALL_TRANSCRIPTS_ALL
+operation:
+  config:
+    basename: mark_iceberg_hol
+    catint: ""
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - {}
+    clusterKeyConfigExpressions:
+      items:
+        - {}
+    clusterKeyExpressions: false
+    extvolume: iceberg_external_volume
+    tcatalog: Snowflake
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGING
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 61e74e76-0fe6-4337-a1be-4392d7d28b0e
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d1d1b53-29ae-4ee9-a8b2-b5a55124070c
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d08afe5-c265-4b09-b47f-8125b388d14a
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9bcb6aef-430e-41fc-99f2-87ee46f4224f
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7827276b-69e0-4d69-ae2b-5953ce678c1d
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4503a32-f3c5-4e67-997f-0319d34968b6
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 245e900a-dbec-4401-8ebf-735463464028
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 79004dcc-94e5-4f8b-93d7-f23f9fdddddc
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 57d583ea-c8f7-44c5-a77c-a59086bc0fb8
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbfa5f38-3335-4175-8ebb-ccc71439cc0b
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d01fe643-918a-4e04-bc6a-37f3d4e5f212
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02ef435a-ecc4-4f54-9e99-94726eeb4ece
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 570311a6-f876-408b-b330-aac89edf384d
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TRANSCRIPT_SENTIMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d3d931a5-28f5-4296-8f41-5beda4339587
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71ed8632-0196-4adf-bab2-9ba0990bb87e
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CUSTOMER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 39d6ba14-1994-4b4e-abd3-b768456a13a2
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82fc6995-47df-4970-9aac-790282aac7d3
+          stepCounter: 09b616d1-270e-46b2-8512-f3b9dc744035
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: CONFIDENCE_SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 740c1247-b052-4eb1-811e-125a9616d8b0
+                stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          V_CALL_TRANSCRIPTS_ALL: 61a38391-6b84-47b0-9549-3a70a0abc008
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGING
+            nodeName: V_CALL_TRANSCRIPTS_ALL
+        join:
+          joinCondition: FROM {{ ref('STAGING', 'V_CALL_TRANSCRIPTS_ALL') }} "V_CALL_TRANSCRIPTS_ALL"
+        name: ICT_CALL_TRANSCRIPTS_ALL
+        noLinkRefs: []
+  name: ICT_CALL_TRANSCRIPTS_ALL
+  overrideSQL: false
+  schema: ""
+  sqlType: Iceberg:::305
+  type: sql
+  version: 1
+type: Node

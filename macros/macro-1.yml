@@ -1,0 +1,195 @@
+fileVersion: 1
+id: "1"
+macroString: |-
+  {#--------------------------------------------------------
+      The block of code below initializes variables for node types
+      that use the advanced deployment strategy
+  ----------------------------------------------------------#}
+
+  {% if desiredState %}
+      {% set columns = desiredState.columns %}
+      {% set storageLocations = desiredState.storageLocations %}
+      {% set config = desiredState.config %}
+      {% set sources = desiredState.sources %}
+      {% set node = desiredState.node %}
+      {% set parameters = desiredState.parameters %}
+  {% endif %}
+
+  {#-----------------------------------------------------------------
+   	Macro: icebergcoldatatype
+    	Purpose: Converts Snowflake column data types into their equivalent Iceberg-compatible types.
+             - VARCHAR → STRING
+             - TIMESTAMP → TIMESTAMP
+             - TIME → TIME
+             - Otherwise, passes through the original type.
+  -------------------------------------------------------------------#}
+  {% macro icebergcoldatatype( coldatatype ) %}
+
+  	{% set nsVariables = namespace(ibcoldatatype = "") %}
+
+  	{% if 'VARCHAR' in coldatatype %}
+  		{% set nsVariables.ibcoldatatype = 'STRING' %}
+  	{% elif 'TIMESTAMP' in coldatatype %}
+  		{% set nsVariables.ibcoldatatype = 'TIMESTAMP' %}
+  	{% elif 'TIME' in coldatatype %}
+  		{% set nsVariables.ibcoldatatype = 'TIME' %}
+  	{% else %}
+  		{% set nsVariables.ibcoldatatype = coldatatype %}
+  	{% endif %}
+  	
+  	{{ nsVariables.ibcoldatatype }}
+
+  {% endmacro %}
+
+  {# ----------------------------------------------------------------------
+    Macro: dimensionHistoryPk
+    Builds a composite key for dimension history:
+     - Joins partition columns from partition_by('DIM')
+     - Adds order_by_col() for uniqueness
+     - Uses epoch millis or MD5(order_by_col) depending on record versioning
+  ----------------------------------------------------------------------  #}
+  {% macro dimensionHistoryPk() %}
+
+      {%- set nsVariables = namespace(dimensionHistoryColumns = "") -%}
+      {%- set partitionBy = partition_by('DIM').split("~") -%}
+      {%- set orderBy = order_by_col() -%}
+
+      {%- for col in partitionBy -%}
+          {%- if loop.first -%}
+              {%- set nsVariables.dimensionHistoryColumns = col -%}
+          {%- else -%}
+              {%- set nsVariables.dimensionHistoryColumns = nsVariables.dimensionHistoryColumns + ' || ' + '\'-\'' + ' ||' + col -%}
+          {%- endif -%}
+      {%- endfor -%}
+
+      {% if config.recordVersioning not in ('Integer Column') %}
+          {%- set nsVariables.dimensionHistoryColumns = nsVariables.dimensionHistoryColumns + ' || ' + '\'-\'' + ' || date_part(epoch_milliseconds, ' + orderBy + ')' -%}
+      {% else %}
+          {%- set nsVariables.dimensionHistoryColumns =  nsVariables.dimensionHistoryColumns ~ " || '-' || " ~ orderBy -%}
+          {%- set nsVariables.dimensionHistoryColumns = "MD5(" ~ nsVariables.dimensionHistoryColumns ~")" -%}
+      {% endif %}
+
+      {{- nsVariables.dimensionHistoryColumns -}}
+
+  {% endmacro %}
+
+  {# ---------------------------------------------------------------------- 
+    Macro: partition_by
+    Purpose: Builds a partition key string for a node.
+              - Uses '~' delimiter for DIM nodes, ',' otherwise.
+              - Concatenates partitionBy config columns with proper transforms.
+    Output: Returns the partition expression as a string.
+  ----------------------------------------------------------------------  #}
+  {%- macro partition_by( nodetype ) -%}
+
+      {% set nsSourceColumns = namespace(allSourceColumns = []) %}
+
+      {% for source in sources %}
+          {% set nsSourceColumns.allSourceColumns = nsSourceColumns.allSourceColumns
+                                                      | list + source.columns
+                                                      | list %}
+      {% endfor %}
+
+      {%- set nsVariables = namespace(partition = "", delim = "") -%}
+
+      {%-if nodetype == 'DIM' -%}
+          {% set nsVariables.delim = '~' %}
+      {%else%}
+          {% set nsVariables.delim = ',' %}
+      {%- endif -%}
+
+      {%- for item in config.partitionBy.get('items') -%}
+          {%- set columnMetadata = nsSourceColumns.allSourceColumns
+                                      | selectattr('id', 'equalto', item.partColName.id)
+                                      | first -%}
+          {%- if loop.first -%}
+              {%- set nsVariables.partition = get_source_transform(columnMetadata) -%}
+          {%- else -%}
+              {%- set nsVariables.partition = nsVariables.partition + nsVariables.delim + get_source_transform(columnMetadata) -%}
+          {%- endif -%}
+      {%- endfor -%}
+
+      {{- nsVariables.partition -}}
+
+  {%- endmacro -%}
+
+  {# ----------------------------------------------------------------------
+    Macro: order_by_col
+    Purpose: Returns the column expression used for ordering in record versioning.
+     - If "Datetime Column": uses the configured datetime column.
+     - If "Integer Column": uses the configured sequence column.
+     - Otherwise: combines separate date and time columns into a timestamp.
+    Output: Order-by column expression as a string.
+    ----------------------------------------------------------------------#}
+  {% macro order_by_col(return) %}
+
+      {% set nsVariables = namespace(orderBy = "") -%}
+      {% set nsSourceColumns = namespace(allSourceColumns = []) %}
+
+      {% for source in sources %}
+          {% set nsSourceColumns.allSourceColumns = nsSourceColumns.allSourceColumns
+                                                      | list + source.columns
+                                                      | list %}
+      {% endfor %}
+
+      {% if config.recordVersioning in ('Datetime Column') -%}
+          {% set datetimeNumericColSort = config.orderBy.get('items') | first -%}
+          {%- set columnMetadata = nsSourceColumns.allSourceColumns
+                                  | selectattr('id', 'equalto', datetimeNumericColSort.colName.id)
+                                  | first -%}
+          {% set nsVariables.orderBy = get_source_transform(columnMetadata) -%}
+
+  	{% elif config.recordVersioning in ('Integer Column')%}
+          {% set datetimeNumericColSort = config.orderseq.get('items') | first -%}
+          {%- set columnMetadata = nsSourceColumns.allSourceColumns
+                                  | selectattr('id','equalto',datetimeNumericColSort.colNameseq.id)
+                                  | first -%}
+          {% set nsVariables.orderBy = get_source_transform(columnMetadata) -%}
+            
+      {% else -%}
+          {% set dateTimeColSort = config.orderByDateTime.get('items') | first -%}
+          {%- set columnMetadata1 = nsSourceColumns.allSourceColumns
+                                      | selectattr('id','equalto',dateTimeColSort.colNameDate.id)
+                                      | first -%}
+          {%- set columnMetadata = nsSourceColumns.allSourceColumns
+                                      | selectattr('id','equalto',dateTimeColSort.colNameTimestamp.id)
+                                      | first -%}
+          {% set nsVariables.orderBy = 'to_timestamp(' + get_source_transform(columnMetadata1) +  '|| ' + '\'T\'' + ' ||' + get_source_transform(columnMetadata) +  ')' -%}
+          
+      {% endif -%}
+
+      {{ nsVariables.orderBy }}
+
+  {% endmacro %}
+
+  {# ----------------------------------------------------------------------
+    Macro: order_by_col_int
+    Purpose:
+      - Reads the configured "recordorderBy" column from the node settings.
+      - Finds the matching column metadata by column ID.
+   Output: Transformed column expression to be used in ORDER BY.
+  ------------------------------------------------------------------------#}
+
+  {% macro order_by_col_int(return) %}
+
+      {% set nsVariables = namespace(orderBy = "") -%}
+    
+      {% set nsSourceColumns = namespace(allSourceColumns = []) %}
+
+      {% for source in sources %}
+         {% set nsSourceColumns.allSourceColumns = nsSourceColumns.allSourceColumns
+                                                      | list + source.columns
+                                                      | list %}
+      {% endfor %}
+
+      {% set datetimeNumericColSort = config.recordorderBy.get('items') | first %}
+      {%- set columnMetadata = nsSourceColumns.allSourceColumns
+                              | selectattr('id','equalto', datetimeNumericColSort.ocolName.id)
+                              | first -%}  
+      {% set nsVariables.orderBy = get_source_transform(columnMetadata) -%} 
+            
+      {{ nsVariables.orderBy }}
+
+  {% endmacro %}
+name: macro
+type: Macro

@@ -1,0 +1,181 @@
+fileVersion: 1
+id: 61a38391-6b84-47b0-9549-3a70a0abc008
+name: V_CALL_TRANSCRIPTS_ALL
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: STAGING
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d1d1b53-29ae-4ee9-a8b2-b5a55124070c
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c9b2baa-7716-4741-ac41-cdd0003a5bd2
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9bcb6aef-430e-41fc-99f2-87ee46f4224f
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3c207b0e-fbe5-4de8-966f-ce44acf6ec58
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4503a32-f3c5-4e67-997f-0319d34968b6
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DAMAGE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3148d1e7-88b0-4c6e-9706-80b13d68af96
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79004dcc-94e5-4f8b-93d7-f23f9fdddddc
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9cb20b99-8504-432a-8b55-2e4da696a6fa
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbfa5f38-3335-4175-8ebb-ccc71439cc0b
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LANGUAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82359610-d6fc-4944-a800-9854b2d1d4d8
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 02ef435a-ecc4-4f54-9e99-94726eeb4ece
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 81981f87-a938-43ab-8ee3-c5b090cb56da
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d3d931a5-28f5-4296-8f41-5beda4339587
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: TRANSCRIPT_SENTIMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc604fb1-36b7-44ef-80dd-82fe8d4eb089
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d3c247da-6942-4fd7-9c82-dc407a1c7c3b
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: ARRAY
+        description: ""
+        name: TRANSCRIPT_CUSTOMER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ff3a83a-e4c6-4888-86cd-6503a0b67011
+                stepCounter: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39d6ba14-1994-4b4e-abd3-b768456a13a2
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CUSTOMER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"TRANSCRIPT_CUSTOMER\".value:\"answer\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 740c1247-b052-4eb1-811e-125a9616d8b0
+          stepCounter: 61a38391-6b84-47b0-9549-3a70a0abc008
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: CONFIDENCE_SCORE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"TRANSCRIPT_CUSTOMER\".value:\"score\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LLM_CALL_TRANSCRIPTS_ALL: 55ef393e-065c-4ce1-8c3d-b079e364a17b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: STAGING
+            nodeName: LLM_CALL_TRANSCRIPTS_ALL
+        join:
+          joinCondition: |-
+            FROM {{ ref('STAGING', 'LLM_CALL_TRANSCRIPTS_ALL') }} "LLM_CALL_TRANSCRIPTS_ALL", 
+            lateral flatten(input => "TRANSCRIPT_CUSTOMER", OUTER => TRUE) "TRANSCRIPT_CUSTOMER"
+        name: V_CALL_TRANSCRIPTS_ALL
+        noLinkRefs: []
+  name: V_CALL_TRANSCRIPTS_ALL
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

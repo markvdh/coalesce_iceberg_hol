@@ -1,31 +1,31 @@
 config:
   entities:
     nodeTypes:
-      "305":
+      "261":
         defaultStorageLocation: null
         isDisabled: false
-      "307":
+      "262":
         defaultStorageLocation: null
         isDisabled: false
-      "320":
+      "271":
         defaultStorageLocation: null
         isDisabled: false
-      "321":
+      "279":
         defaultStorageLocation: null
         isDisabled: false
-      "565":
+      "337":
         defaultStorageLocation: null
         isDisabled: false
-      "566":
+      "429":
         defaultStorageLocation: null
         isDisabled: false
-      "571":
+      "499":
         defaultStorageLocation: null
         isDisabled: false
   packageVariables: ""
 fileVersion: 1
-id: "@coalesce/snowflake/iceberg-tables"
-name: Iceberg
-packageID: "@coalesce/snowflake/iceberg-tables"
-releaseID: 72308b48-5047-41dd-8559-43d3e8d59e09
+id: "@coalesce/snowflake/cortex"
+name: Cortex
+packageID: "@coalesce/snowflake/cortex"
+releaseID: 11b0cdb6-3f15-4af2-9f4b-13a90d6093cf
 type: Package
